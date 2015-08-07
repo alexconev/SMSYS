@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="description" content="">
+      <link rel="icon" href="img/favicon.ico">
+
+      <title>Месечен трафик :: SMSYS</title>    
+
+      <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+      <link href="css/normalize.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="main.html">SMSYS</a></h1>
+        <div class="header_nav">
+          <span class="signal">74%</span>
+          <a href="send.html">Изпрати SMS</a>
+          <a href="settings.html">Настройки</a>
+          <a href="help.html">Помощ</a>
+        </div>
+        <div class="clear"></div>
+      </header>
+
+      <nav>
+        <ul>
+          <h3>Съобщения</h3>
+          <li><a href="outbox.html">Изходящи</a></li>
+          <li><a href="inbox.html">Входящи</a></li>
+          <h3>Контакти</h3>
+          <li><a href="phonebook.html">Номера</a></li>
+          <li><a href="groups.html">Групи</a></li>
+          <li><a href="import.html">Импорт</a></li>
+          <h3>Статистика</h3>
+          <li><a href="stat-day.html">Днес</a></li>
+          <li><a href="stat-week.html">Последна седмица</a></li>
+          <li><a href="stat-month.html">Последен месец</a></li>
+          <h3>Логове</h3>
+          <li><a href="log.html">Системен лог</a></li>
+          <li><a href="in-log.html">Входящи логове</a></li>
+          <li><a href="out-log.html">Изходящи логове</a></li>
+        </ul>       
+      </nav>
+      <article>
+        <h2>Месечен трафик</h2> 
+        <div id="chart_div" style="width: 100%; height: 450px;"></div>
+        <div class="clear"></div>
+      </article>
+      <footer><a target="blank" href="http://snakea.info">Snakea &copy 2015</a></footer>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Дата', 'Входящи', 'Изходящи'],
+          [01,330,150],
+          [02,300,120],
+          [03,180,330],   
+          [04,300,150],
+          [05,300,120],
+          [06,330,150],           
+          [07,330,150],      
+          [08,330,150],          
+          [09,180,330],
+          [10,180,330],
+          [11,300,150],
+          [12,180,330],
+          [13,300,120],
+          [14,300,150],
+          [15,300,120],
+          [16,330,150],
+          [17,180,330],
+          [18,300,150],            
+          [19,300,120],
+          [20,330,150],          
+          [21,300,150],
+          [22,180,330],
+          [23,300,150],
+          [24,300,120],
+          [25,330,150],
+          [26,300,120],
+          [27,180,330],   
+          [28,300,150],
+          [29,300,120],
+          [30,330,150],                        
+        ]);
+
+        var options = {
+          hAxis: {title: 'Май 2015',  titleTextStyle: {color: '#333'}, ticks: [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]},
+          vAxis: {title: 'Брой', minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>    
+  </body>
+</html>

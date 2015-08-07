@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <meta name="description" content="">
+	    <link rel="icon" href="img/favicon.ico">
+
+	    <title>Настройки :: SMSYS</title>		
+
+	    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+	    <link href="css/normalize.css" rel="stylesheet">
+	    <link href="css/style.css" rel="stylesheet">
+	    <link href="css/form.css" rel="stylesheet">
+
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<h1><a href="main.html">SMSYS</a></h1>
+				<div class="header_nav">
+					<span class="signal">74%</span>
+					<a href="send.html">Изпрати SMS</a>
+					<a href="settings.html">Настройки</a>
+					<a href="help.html">Помощ</a>
+				</div>
+				<div class="clear"></div>
+			</header>
+
+	    	<nav>
+				<ul>
+		            <h3>Съобщения</h3>
+		            <li><a href="outbox.html">Изходящи</a></li>
+		            <li><a href="inbox.html">Входящи</a></li>
+		            <h3>Контакти</h3>
+            		<li><a href="phonebook.html">Номера</a></li>
+            		<li><a href="groups.html">Групи</a></li>
+            		<li><a href="import.html">Импорт</a></li>
+	            	<h3>Статистика</h3>
+            		<li><a href="stat-day.html">Днес</a></li>
+            		<li><a href="stat-week.html">Последна седмица</a></li>
+            		<li><a href="stat-month.html">Последен месец</a></li>
+            		<h3>Логове</h3>
+            		<li><a href="log.html">Системен лог</a></li>
+            		<li><a href="in-log.html">Входящи логове</a></li>
+            		<li><a href="out-log.html">Изходящи логове</a></li>
+	          	</ul>    		
+	    	</nav>
+	    	<article>
+	    		<h2>Настройки</h2>
+	    		<form action="success.html" metho="POST">
+					<div class="field">
+	                    <div class="label"><label for="phone">Номер:</label></div>
+	                    <div class="inp">
+	                    	<input type="tel" name="phone" id="phone" class="f_input" placeholder="+359883111444" />             	
+	                    </div>
+	                </div>
+					<div class="field">
+	                    <div class="label"><label for="carrier">Оператор:</label></div>
+	                    <div class="inp">
+	                    	<input type="text" name="carrier" id="carrier" class="f_input" placeholder="M-tel" />             	
+	                    </div>
+	                </div>
+					<div class="field">
+	                    <div class="label"><label for="smss">Месечен лимит:</label></div>
+	                    <div class="inp">
+	                    	<input type="text" name="smss" id="smss" class="f_input" placeholder="500"/>             	
+	                    </div>
+	                </div>	  
+  					<div class="field">
+	                    <div class="label"><label for="port">Порт:</label></div>
+	                    <div class="inp">
+			    			<select name="port" id="port" class="f_input">
+			    				<option value="/dev/ttyUSB0">/dev/ttyUSB0</option>
+			    				<option value="/dev/ttyUSB1">/dev/ttyUSB1</option>
+			    				<option value="/dev/ttyS1">/dev/ttyS1</option>
+			    				<option value="/dev/ttyS2">/dev/ttyS2</option>
+			    			</select>          	
+	                    </div>
+	                </div>
+					<div class="field">
+	                    <div class="label"><label for="modem">Модем</label></div>
+	                    <div class="inp">
+	    					<textarea name="message" id="message" class="f_input"></textarea>
+						</div>
+	                </div>  	
+					<div class="field">
+	                    <div class="label"><label for="modem">Статус</label></div>
+	                    <div class="inp">
+	    					<span class="green">Неактивен</span>
+						</div>
+	                </div>  	                
+					<div class="field">
+	                    <div class="label">&nbsp;</div>
+	                    <div class="inp">                		
+	    					<input class="s_input blue" type="submit" value="Запази">
+	    				</div>
+	    			</div>
+	    		</form>
+	    		<div class="clear"></div>
+	    	</article>
+	    	<footer><a target="blank" href="http://snakea.info">Snakea &copy 2015</a></footer>
+	    </div>
+    	<script src="js/jquery.js"></script>
+	</body>
+</html>

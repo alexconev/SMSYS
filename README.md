@@ -1,2 +1,2 @@
 # SMSYS
-Онлайн система за SMS мениджмънт (SMS gateway)
+Онлайн система за SMS мениджмънт (SMS gateway).
