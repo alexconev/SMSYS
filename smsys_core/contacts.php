@@ -1,6 +1,6 @@
 <?php
 
-class Contacts {
+class ContactsMan {
 
 	public function importContacts($strFile){
 		$strContent = file_get_contents($strFile);

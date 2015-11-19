@@ -10,7 +10,7 @@
 
 	    <title><?php echo $Title;?> :: SMSYS</title>		
 
-	    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
+	    <!-- <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'> -->
 	    <link href="<?php echo base_url(); ?>static/css/normalize.css" rel="stylesheet">
 	    <link href="<?php echo base_url(); ?>static/css/style.css" rel="stylesheet">
 	    <link href="<?php echo base_url(); ?>static/css/list.css" rel="stylesheet">
@@ -26,7 +26,6 @@
 				<div class="header_nav">
 					<span class="signal">&nbsp;</span>
 					<a href="<?php echo base_url(); ?>sms/send">Изпрати SMS</a>
-					<a href="<?php echo base_url(); ?>sys/settings">Настройки</a>
 					<a href="<?php echo base_url(); ?>pages/help">Помощ</a>
 				</div>
 				<div class="clear"></div>
@@ -41,13 +40,9 @@
             		<li><a href="<?php echo base_url(); ?>contacts/phonebook">Номера</a></li>
             		<li><a href="<?php echo base_url(); ?>contacts/groups">Групи</a></li>
             		<li><a href="<?php echo base_url(); ?>contacts/import">Импорт</a></li>
-	            	<h3>Статистика</h3>
-            		<li><a href="<?php echo base_url(); ?>stats/day">Днес</a></li>
-            		<li><a href="<?php echo base_url(); ?>stats/week">Последна седмица</a></li>
-            		<li><a href="<?php echo base_url(); ?>stats/month">Последен месец</a></li>
-            		<h3>Логове</h3>
-            		<li><a href="<?php echo base_url(); ?>logs/sys">Системен лог</a></li>
-            		<li><a href="<?php echo base_url(); ?>logs/in">Входящи логове</a></li>
-            		<li><a href="<?php echo base_url(); ?>logs/out">Изходящи логове</a></li>
+	            	<h3>Система</h3>
+            		<li><a href="<?php echo base_url(); ?>sys/settings">Настройки</a></li>
+            		<li><a href="<?php echo base_url(); ?>sys/statistics">Статистика</a></li>
+            		<li><a href="<?php echo base_url(); ?>sys/log">Системен лог</a></li>
 	          	</ul>    		
 	    	</nav>

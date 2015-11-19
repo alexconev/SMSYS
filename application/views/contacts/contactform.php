@@ -16,13 +16,7 @@
 			    				<option value="+359883481987">Бизнес</option>
 			    			</select>   
 	                    </div>
-	                </div> 		
-					<div class="field">
-	                    <div class="label"><label for="notes">Бележки</label></div>
-	                    <div class="inp">
-	    					<input type="text" name="notes" id="notes" class="f_input" />
-						</div>
-	                </div> 	
+	                </div> 			
 					<div class="field">
 	                    <div class="label">&nbsp;</div>
 	                    <div class="inp">                		

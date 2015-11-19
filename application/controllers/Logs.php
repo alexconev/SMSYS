@@ -9,7 +9,7 @@ class Logs extends CI_Controller {
 		$this->load->helper('url');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('sms/log');
+        $this->load->view('logs/log');
         $this->load->view('templates/footer');
 	}
 
@@ -19,7 +19,7 @@ class Logs extends CI_Controller {
 		$this->load->helper('url');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('sms/in-log');
+        $this->load->view('logs/in-log');
         $this->load->view('templates/footer');
 	}	
 
@@ -29,7 +29,7 @@ class Logs extends CI_Controller {
 		$this->load->helper('url');
 
         $this->load->view('templates/header', $data);
-        $this->load->view('sms/out-log');
+        $this->load->view('logs/out-log');
         $this->load->view('templates/footer');
 	}
 }

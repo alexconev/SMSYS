@@ -8,13 +8,13 @@ class SMS {
                 $i = 1;
                 $arSMS = array();
 
+                for($j = 1; $j < 4; $j+=2)
                 do{
-                        exec("gammu getsms 1 ".$i.' > '.SMS::$strServerPath.".sms");
+                        exec("gammu getsms ".$j." ".$i.' > '.SMS::$strServerPath.".sms");
                         $strContent = file_get_contents(SMS::$strServerPath.'.sms');
 
                         $lamp = strpos($strContent, 'Empty') === FALSE;
-                        if($lamp)
-                        {
+                        if($lamp){
                                 $nPos = strpos($strContent, 'Sent                 : ');
                                 $nPos2 = strpos($strContent, "\n",$nPos+23);
                                 $arSMS[$i-1]['date'] = substr($strContent, $nPos+23, $nPos2-$nPos-23);  
@@ -31,11 +31,17 @@ class SMS {
 
                                 $i++;
 
-                                //exec("gammu deletesms 1 ".$i);
+                                exec("gammu deletesms ".$j." ".$i);
                         }
                 }while($lamp);
 
-                return json_encode($arSMS);
+                require_once(dirname(__FILE__)."/mysql.php");
+
+                $pDB = new MySql();
+
+                foreach ($arSMS as $value) {
+                        $pDB->Query("INSERT INTO `sms_inbox`(`Date`, `Sender`, `Content`) VALUES ('".date("Y-m-d", strtotime($value['date']))."','".$value['number']."','".$value['content']."')");
+                }
         }       
 }
 
