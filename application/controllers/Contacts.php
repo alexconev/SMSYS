@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Contacts extends CI_Controller {
 
-	private $nPerPage = 14;
+	private $nPerPage = 15;
 
 	public function __construct(){
         parent::__construct();
@@ -11,7 +11,7 @@ class Contacts extends CI_Controller {
         $this->load->helper(array('form', 'url'));
     }
 
-    public function getPaging($nCnt, $strBaseUrl){
+    private function getPaging($nCnt, $strBaseUrl){
     	$nSpread = 2;
 
         $page = $this->uri->segment(3) == 'page' ? $this->uri->segment(4) : 1 ;
@@ -44,6 +44,32 @@ class Contacts extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
+    public function addphone(){
+        $head['Title'] = 'Добавя на контакт';
+        $head['Description'] = 'Добавя на контакт :: SMSYS';
+        $this->load->helper('url');
+
+        $id = $this->uri->segment(3);
+        $data = $this->db->get_where('phonebook', array('id' => $id))->row();
+
+        $this->load->view('templates/header', $head);
+        $this->load->view('contacts/contactform', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function editphone(){
+        $head['Title'] = 'Редакция на контакт';
+        $head['Description'] = 'Редакция на контакт :: SMSYS';
+        $this->load->helper('url');
+
+        $id = $this->uri->segment(3);
+        $data = $this->db->get_where('phonebook', array('id' => $id))->row();
+
+        $this->load->view('templates/header', $head);
+        $this->load->view('contacts/contactform', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function delphone($id){        
         $this->db->where('id', $id)->delete('phonebook'); 
         redirect('/contacts/phonebook');  
@@ -60,6 +86,31 @@ class Contacts extends CI_Controller {
         $this->load->view('contacts/groups', $data);
         $this->load->view('templates/footer');
 	}	
+
+    public function addgroup(){
+        $head['Title'] = 'Добавяне на група';
+        $head['Description'] = 'Добавяне на група :: SMSYS';
+        $this->load->helper('url');
+
+        $this->load->view('templates/header', $head);
+        $this->load->view('contacts/groupsform');
+        $this->load->view('templates/footer');
+    }
+
+    public function editgroup(){
+        $head['Title'] = 'Редакция на група';
+        $head['Description'] = 'Редакция на група :: SMSYS';
+        $this->load->helper('url');
+
+        $this->load->view('templates/header', $head);
+        $this->load->view('contacts/groupsform');
+        $this->load->view('templates/footer');
+    }
+
+    public function delgroup($id){        
+        $this->db->where('id', $id)->delete('groups'); 
+        redirect('/contacts/groups');  
+    }    
 
 	public function import(){
 		$head['Title'] = 'Импорт';
@@ -95,28 +146,4 @@ class Contacts extends CI_Controller {
                 redirect('/contacts/phonebook');
         }
     }	
-
-	public function contform(){
-		$head['Title'] = 'Импорт';
-		$head['Description'] = 'Импорт :: SMSYS';
-		$this->load->helper('url');
-
-        $id = $this->uri->segment(3);
-        $data = $this->db->get_where('phonebook', array('id' => $id))->row();
-
-        $this->load->view('templates/header', $head);
-        $this->load->view('contacts/contactform', $data);
-        $this->load->view('templates/footer');
-	}	
-
-	public function groupsform(){
-		$data['Title'] = 'Импорт';
-		$data['Description'] = 'Импорт :: SMSYS';
-		$this->load->helper('url');
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('contacts/groupsform');
-        $this->load->view('templates/footer');
-	}
-
 }

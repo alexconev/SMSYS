@@ -6,8 +6,8 @@
 					<div class="group"><?php echo $item['Title'] ?></div>
 					<div class="message"><?php echo $item['Description'] ?></div>
 					<div class="controls">
-						<a class="delete" href="#">&nbsp;</a>
-						<a class="edit" href="groupform">&nbsp;</a>
+						<a class="delete" href="<?php echo base_url(); ?>contacts/delgroup/<?php echo $contact['ID'] ?>">&nbsp;</a>
+						<a class="edit" href="<?php echo base_url(); ?>contacts/editgroup/<?php echo $contact['ID'] ?>">&nbsp;</a>					
 					</div>
 					<div class="clear"></div>
 				</div>

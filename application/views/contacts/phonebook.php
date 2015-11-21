@@ -8,7 +8,7 @@
 			<div class="group"><?php echo $contact['Group'] ?></div>
 			<div class="controls">
 				<a class="delete" href="<?php echo base_url(); ?>contacts/delphone/<?php echo $contact['ID'] ?>">&nbsp;</a>
-				<a class="edit" href="<?php echo base_url(); ?>contacts/contform/<?php echo $contact['ID'] ?>">&nbsp;</a>
+				<a class="edit" href="<?php echo base_url(); ?>contacts/editphone/<?php echo $contact['ID'] ?>">&nbsp;</a>
 			</div>
 			<div class="clear"></div>
 		</div>

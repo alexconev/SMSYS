@@ -25,8 +25,6 @@
 				<h1><a href="<?php echo base_url(); ?>pages/main">SMSYS</a></h1>
 				<div class="header_nav">
 					<span class="signal">&nbsp;</span>
-					<a href="<?php echo base_url(); ?>sms/send">Изпрати SMS</a>
-					<a href="<?php echo base_url(); ?>pages/help">Помощ</a>
 				</div>
 				<div class="clear"></div>
 			</header>
@@ -34,15 +32,19 @@
 	    	<nav>
 				<ul>
 		            <h3>Съобщения</h3>
-		            <li><a href="<?php echo base_url(); ?>sms/outbox">Изходящи</a></li>
-		            <li><a href="<?php echo base_url(); ?>sms/inbox">Входящи</a></li>
+		            <li><a href="<?php echo base_url(); ?>sms/send">Изпрати SMS</a></li>
+		            <li><a href="<?php echo base_url(); ?>sms/outbox">Изходящи съобщения</a></li>
+		            <li><a href="<?php echo base_url(); ?>sms/inbox">Входящи съобщения</a></li>
 		            <h3>Контакти</h3>
-            		<li><a href="<?php echo base_url(); ?>contacts/phonebook">Номера</a></li>
-            		<li><a href="<?php echo base_url(); ?>contacts/groups">Групи</a></li>
-            		<li><a href="<?php echo base_url(); ?>contacts/import">Импорт</a></li>
+            		<li><a href="<?php echo base_url(); ?>contacts/phonebook">Списък номера</a></li>
+            		<li><a href="<?php echo base_url(); ?>contacts/addphone">Добави номер</a></li>
+            		<li><a href="<?php echo base_url(); ?>contacts/import">Импорт номера</a></li>
+            		<li><a href="<?php echo base_url(); ?>contacts/groups">Списък групи</a></li>
+            		<li><a href="<?php echo base_url(); ?>contacts/addgroup">Добави група</a></li>
 	            	<h3>Система</h3>
             		<li><a href="<?php echo base_url(); ?>sys/settings">Настройки</a></li>
             		<li><a href="<?php echo base_url(); ?>sys/statistics">Статистика</a></li>
             		<li><a href="<?php echo base_url(); ?>sys/log">Системен лог</a></li>
+            		<li><a href="<?php echo base_url(); ?>pages/help">Помощ</a></li>
 	          	</ul>    		
 	    	</nav>

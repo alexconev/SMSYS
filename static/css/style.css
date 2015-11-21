@@ -22,7 +22,7 @@ header .header_nav span.signal { background:#000 url("../img/glyphicons/signal.p
 
 nav { float: left; width: 200px; height: 100%; }
 nav ul { padding: 0px; margin: 0px; }
-nav ul li { list-style-type: none; padding:5px 25px; }
+nav ul li { list-style-type: none; padding:5px 20px; }
 nav ul li.active { background-color: #337ab7; }
 nav ul li a { color: #337ab7; font-size: 15px; }
 nav ul li a:hover { color: #337ab7; }

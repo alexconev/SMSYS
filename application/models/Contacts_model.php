@@ -9,7 +9,11 @@ class Contacts_model extends CI_Model {
         
         $page = $this->uri->segment(3) == 'page' ? $this->uri->segment(4) : 1 ;
 
-        $query = $this->db->select('phonebook.*, groups.Title as Group')->from('phonebook')->join('groups', 'groups.id = phonebook.GroupID', 'left')->limit($nPerPage, ($page-1)*$nPerPage)->order_by('Name ASC')->get();
+        $query = $this->db->select('phonebook.*, IFNULL(groups.Title, \'No Group\') as `Group`')
+                          ->from('phonebook')
+                          ->join('groups', 'groups.id = phonebook.GroupID', 'left')
+                          ->limit($nPerPage, ($page-1)*$nPerPage)
+                          ->order_by('Name ASC')->get();
         return $query->result_array();
 	}       
 

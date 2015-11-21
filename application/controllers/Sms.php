@@ -11,7 +11,7 @@ class Sms extends CI_Controller {
         $this->load->helper('url');
     }	
 
-    public function getPaging($nCnt, $strBaseUrl){
+    private function getPaging($nCnt, $strBaseUrl){
     	$nSpread = 2;
 
         $page = $this->uri->segment(3) == 'page' ? $this->uri->segment(4) : 1 ;
