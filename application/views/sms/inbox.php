@@ -7,7 +7,7 @@
               <div class="message"><?php echo $sms_item['Content'] ?></div>
               <div class="date"><?php echo date("H:i d.m.Y", strtotime($sms_item['Date'])); ?></div>
               <div class="controls">
-                <a class="delete" href="#">&nbsp;</a>
+                <a class="delete" href="<?php echo base_url(); ?>sms/delin/<?php echo $sms_item['ID'] ?>">&nbsp;</a>
               </div>
               <div class="clear"></div>
             </div>

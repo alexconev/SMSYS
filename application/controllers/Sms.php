@@ -43,6 +43,11 @@ class Sms extends CI_Controller {
         $this->load->view('sms/inbox', $data);
         $this->load->view('templates/footer');
 	}
+    
+    public function delin($id){        
+        $this->db->where('id', $id)->delete('sms_inbox'); 
+        redirect('/sms/inbox');  
+    }
 
 	public function outbox(){
 		$head['Title'] = 'Изходяща поща';
@@ -55,6 +60,11 @@ class Sms extends CI_Controller {
         $this->load->view('sms/outbox', $data);
         $this->load->view('templates/footer');
 	}	
+
+    public function delout($id){        
+        $this->db->where('id', $id)->delete('sms_outbox'); 
+        redirect('/sms/outbox');  
+    }
 
 	public function send(){
 		$data['Title'] = 'Изпрати SMS';
