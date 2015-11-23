@@ -35,6 +35,7 @@ class Contacts extends CI_Controller {
 	public function phonebook(){
 		$head['Title'] = 'Номера';
 		$head['Description'] = 'Номера :: SMSYS';
+        $head['arCss'][] = 'static/css/list.css';
 
 		$data['contacts'] = $this->contacts_model->get_contacts($this->nPerPage);
 		$data['paging'] = $this->getPaging($this->contacts_model->get_contacts_cnt(), base_url().'contacts/phonebook/page/');
@@ -44,30 +45,61 @@ class Contacts extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
-    public function addphone(){
+    public function addphone($err = ''){
         $head['Title'] = 'Добавя на контакт';
         $head['Description'] = 'Добавя на контакт :: SMSYS';
-        $this->load->helper('url');
+        $head['arCss'][] = 'static/css/form.css';
 
-        $id = $this->uri->segment(3);
-        $data = $this->db->get_where('phonebook', array('id' => $id))->row();
+        $data['arGroups'] = $this->contacts_model->GetDropDownGr();
+        $data['error'] = $err;
 
         $this->load->view('templates/header', $head);
         $this->load->view('contacts/contactform', $data);
         $this->load->view('templates/footer');
     }
 
-    public function editphone(){
+    public function editphone($id,$err = ''){
         $head['Title'] = 'Редакция на контакт';
         $head['Description'] = 'Редакция на контакт :: SMSYS';
-        $this->load->helper('url');
+        $head['arCss'][] = 'static/css/form.css';
 
-        $id = $this->uri->segment(3);
-        $data = $this->db->get_where('phonebook', array('id' => $id))->row();
+        $phone = $this->db->get_where('phonebook', array('id' => $id))->row();
+        if($phone) $data = json_decode(json_encode($phone),true);
+
+        $data['arGroups'] = $this->contacts_model->GetDropDownGr();
+        $data['error'] = $err;
 
         $this->load->view('templates/header', $head);
         $this->load->view('contacts/contactform', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function savephone(){
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('Phone', 'Номер', 'required');
+        $this->form_validation->set_rules('Name', 'Име', 'required');
+
+        if ($this->form_validation->run() == FALSE){
+            if($this->input->post('ID') == FALSE) 
+                $this->addphone(validation_errors());
+            else 
+                $this->editphone($this->input->post('ID'), validation_errors());
+        } else {
+            $data = array(
+                'Name' => $this->input->post('Name'),
+                'Phone' => $this->input->post('Phone'),
+                'GroupID' => $this->input->post('GroupID')
+            );
+
+            if($this->input->post('ID') == FALSE) 
+                $this->db->insert('phonebook', $data);
+            else {
+                $this->db->where('ID', $this->input->post('ID'));
+                $this->db->update('phonebook', $data);
+            }
+            redirect('/contacts/phonebook');
+        }      
     }
 
     public function delphone($id){        
@@ -78,6 +110,7 @@ class Contacts extends CI_Controller {
 	public function groups(){
 		$head['Title'] = 'Групи';
 		$head['Description'] = 'Групи :: SMSYS';
+        $head['arCss'][] = 'static/css/list.css';
 
 		$data['groups'] = $this->contacts_model->get_groups($this->nPerPage);
 		$data['paging'] = $this->getPaging($this->contacts_model->get_groups_cnt(), base_url().'contacts/groups/page/');
@@ -87,24 +120,56 @@ class Contacts extends CI_Controller {
         $this->load->view('templates/footer');
 	}	
 
-    public function addgroup(){
+    public function addgroup($err = ''){
         $head['Title'] = 'Добавяне на група';
         $head['Description'] = 'Добавяне на група :: SMSYS';
-        $this->load->helper('url');
+        $head['arCss'][] = 'static/css/form.css';
+
+        $data['error'] = $err;
 
         $this->load->view('templates/header', $head);
-        $this->load->view('contacts/groupsform');
+        $this->load->view('contacts/groupform', $data);
         $this->load->view('templates/footer');
     }
 
-    public function editgroup(){
+    public function editgroup($id,$err = ''){
         $head['Title'] = 'Редакция на група';
         $head['Description'] = 'Редакция на група :: SMSYS';
-        $this->load->helper('url');
+        $head['arCss'][] = 'static/css/form.css';
+
+        $group = $this->db->get_where('groups', array('id' => $id))->row();
+        if($group) $data = json_decode(json_encode($group),true);        
+        $data['error'] = $err;
 
         $this->load->view('templates/header', $head);
-        $this->load->view('contacts/groupsform');
+        $this->load->view('contacts/groupform', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function savegroup(){
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('Title', 'Номер', 'required');
+
+        if ($this->form_validation->run() == FALSE){
+            if($this->input->post('ID') == FALSE) 
+                $this->addgroup(validation_errors());
+            else 
+                $this->editgroup($this->input->post('ID'), validation_errors());
+        } else {
+            $data = array(
+                'Title' => $this->input->post('Title'),
+                'Description' => $this->input->post('Description')
+            );
+
+            if($this->input->post('ID') == FALSE) 
+                $this->db->insert('groups', $data);
+            else {
+                $this->db->where('ID', $this->input->post('ID'));
+                $this->db->update('groups', $data);
+            }
+            redirect('/contacts/groups');
+        }      
     }
 
     public function delgroup($id){        
@@ -115,14 +180,21 @@ class Contacts extends CI_Controller {
 	public function import(){
 		$head['Title'] = 'Импорт';
 		$head['Description'] = 'Импорт :: SMSYS';
-		$this->load->helper('url');
+		$head['arCss'][] = 'static/css/form.css';
 
         $this->load->view('templates/header', $head);
         $this->load->view('contacts/import', array('error' => ' ' ));
         $this->load->view('templates/footer');
 	}	
 
-	public function do_import(){
+    public function export(){
+        require_once('smsys_core/contacts.php');
+        $pCont = new ContactsCore();
+        $pCont->exportContacts();
+    }
+
+	public function doimport(){
+
 		$head['Title'] = 'Импорт';
 		$head['Description'] = 'Импорт :: SMSYS';
 
@@ -141,7 +213,7 @@ class Contacts extends CI_Controller {
         {
                 $data = array('upload_data' => $this->upload->data());
                 require_once('smsys_core/contacts.php');
-                $pCont = new ContactsMan();
+                $pCont = new ContactsCore();
                 $pCont->importContacts($data["upload_data"]["full_path"]);
                 redirect('/contacts/phonebook');
         }

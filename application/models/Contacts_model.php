@@ -17,6 +17,16 @@ class Contacts_model extends CI_Model {
         return $query->result_array();
 	}       
 
+    public function GetDropDownConts(){
+        $query = $this->db->order_by('Name', 'ASC')->get('phonebook');
+        return $query->result_array();
+    } 
+
+    public function GetDropDownGr(){
+        $query = $this->db->order_by('Title', 'ASC')->get('groups');
+        return $query->result_array();
+    }     
+
     public function get_contacts_cnt(){
         $query = $this->db->select('count(ID) as cnt')->get('phonebook');
         $res = $query->row_array();

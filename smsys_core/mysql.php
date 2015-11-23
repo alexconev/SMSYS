@@ -54,6 +54,10 @@ class MySql{
         return $this->mCurs;
     }  
 
+    public function Log($mess){
+        mysqli_query($this->mConn, "INSERT INTO `log` (`Message`) VALUES ('".$mess."')");
+    }
+
 	public function FetchAssoc( $hCursor = null ){
 		
 		if ( $this->mCurs ) return mysqli_fetch_assoc( $this->mCurs );

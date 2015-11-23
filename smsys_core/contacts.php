@@ -1,6 +1,6 @@
 <?php
 
-class ContactsMan {
+class ContactsCore {
 
 	public function importContacts($strFile){
 		$strContent = file_get_contents($strFile);
@@ -27,12 +27,14 @@ class ContactsMan {
 			$pDB->Query("DELETE FROM `phonebook` WHERE `Phone` = '".$value['phone']."' OR `Name` = '".$value['name']."'");
 			$pDB->Query("INSERT INTO `phonebook`(`Name`, `Phone`, `GroupID`) VALUES ('".$value['name']."','".$value['phone']."','0')");
 		}
+
+		$pDB->Log("Import new contacts (".$strFile.")");
 	}
 
 	public function exportContacts(){
 		require_once(dirname(__FILE__)."/mysql.php");
 		$pDB = new MySql();
-		$pDB->Query("SELECT `phonebook`.`Name`, `phonebook`.`Phone` FROM `phonebook` ORDER BY phonebook`.`Name` ASC");
+		$pDB->Query("SELECT `phonebook`.`Name`, `phonebook`.`Phone` FROM `phonebook` ORDER BY `phonebook`.`Name` ASC");
 
 		header("Content-Disposition: attachment; filename=\"smsys_".date("Y-m-d_His").".vcf");
 		header("Content-Type: application/force-download");
@@ -40,6 +42,8 @@ class ContactsMan {
 		while ($arContact = $pDB->FetchAssoc()) {
 			echo "BEGIN:VCARD\nVERSION:2.1\nN:;".$arContact['Name'].";;;\nFN:".$arContact['Name']."\nTEL;CELL;PREF:".$arContact['Phone']."\nEND:VCARD\n";
 		}
+
+		$pDB->Log("Export contacts list");
 	}
 }
 ?>

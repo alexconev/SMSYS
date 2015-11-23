@@ -1,2 +1,2 @@
 #!/bin/bash
-scp -r * smsysadmin@192.168.0.103:/srv/http/
+scp -r * smsysadmin@smsys.dev:/srv/http/

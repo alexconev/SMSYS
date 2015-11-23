@@ -1,5 +1,7 @@
 <?php
 
+require_once "settings.php";
+
 class Network {
 
 	private $strServerPath = "/srv/http/";
@@ -8,13 +10,13 @@ class Network {
 
 	public function __construct(){
 		exec("gammu monitor 1 > ".$this->strServerPath.".network");
-                error_log(date("h:i:s ")."gammu monitor 1 > ".$this->strServerPath.".network\n", 3, '../sms_log/'.date('Y-m-d').'.log');
+                //error_log(date("h:i:s ")."gammu monitor 1 > ".$this->strServerPath.".network\n", 3, '../sms_log/'.date('Y-m-d').'.log');
                 $this->strContent = file_get_contents($this->strServerPath.'.network');
                 
                 $nAttempts = 0;
                 while(strpos($this->strContent,"Waiting for PIN") && $nAttempts < 2) {
                         exec("gammu entersecuritycode PIN 0000");
-                        error_log(date("h:i:s ")." gammu entersecuritycode PIN 0000\n", 3, '../sms_log/'.date('Y-m-d').'.log');
+                        //error_log(date("h:i:s ")." gammu entersecuritycode PIN 0000\n", 3, '../sms_log/'.date('Y-m-d').'.log');
                         sleep(1);
                         $nAttempts++;
                 }
@@ -24,7 +26,7 @@ class Network {
                 }
                 else{
                         exec("gammu monitor 1 > ".$this->strServerPath.".network");
-                        error_log(date("h:i:s ")."gammu monitor 1 > ".$this->strServerPath.".network\n", 3, '../sms_log/'.date('Y-m-d').'.log');
+                        //error_log(date("h:i:s ")."gammu monitor 1 > ".$this->strServerPath.".network\n", 3, '../sms_log/'.date('Y-m-d').'.log');
                         $this->strContent = file_get_contents($this->strServerPath.'.network');                        
                 }
 	}
@@ -53,11 +55,13 @@ class Network {
                         $res['signal'] = $this->getSignal();
                         $res['network'] = $this->getNetwork();
                 }
+
+                require_once(dirname(__FILE__)."/mysql.php");
+                $pDB = new MySql();
+                //$pDB->Log(json_encode($res));
+
                 return json_encode($res);
         }
 }
-
-$t = new Network();
-echo $t->getJSONState();
 
 ?>

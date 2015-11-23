@@ -5,17 +5,17 @@ class Sms_model extends CI_Model {
         $this->load->database();
     }
 
-	public function get_inbox($nPerPage = 14){
-        
-        $page = $this->uri->segment(3) == 'page' ? $this->uri->segment(4) : 1 ;
+  	public function get_inbox($nPerPage = 14){
+          
+          $page = $this->uri->segment(3) == 'page' ? $this->uri->segment(4) : 1 ;
 
-        $query = $this->db->select('IFNULL(phonebook.Name, sms_inbox.Sender) AS Sender, sms_inbox.ID, sms_inbox.Content, sms_inbox.Date')
-                          ->from('sms_inbox')
-                          ->join('phonebook', 'phonebook.Phone LIKE CONCAT("%",SUBSTR(sms_inbox.Sender,5,9))', 'left')
-                          ->limit($nPerPage, ($page-1)*$nPerPage)
-                          ->order_by('sms_inbox.Date', "DESC")->get();
-        return $query->result_array();
-	}   
+          $query = $this->db->select('IFNULL(phonebook.Name, sms_inbox.Sender) AS Sender, sms_inbox.ID, sms_inbox.Content, sms_inbox.Date')
+                            ->from('sms_inbox')
+                            ->join('phonebook', 'phonebook.Phone LIKE CONCAT("%",SUBSTR(sms_inbox.Sender,5,9))', 'left')
+                            ->limit($nPerPage, ($page-1)*$nPerPage)
+                            ->order_by('sms_inbox.Date', "DESC")->get();
+          return $query->result_array();
+  	}   
 
     public function get_inbox_cnt(){
         $query = $this->db->select('count(ID) as cnt')->get('sms_inbox');
@@ -31,8 +31,7 @@ class Sms_model extends CI_Model {
                           ->from('sms_outbox')
                           ->join('phonebook', 'phonebook.Phone LIKE CONCAT("%",SUBSTR(sms_outbox.Recipient,5,9))', 'left')
                           ->order_by('sms_outbox.Date', "DESC")
-                          ->limit($nPerPage, ($page-1)*$nPerPage)
-                          ->order_by('sms_outbox.Date', "DESC")->get();
+                          ->limit($nPerPage, ($page-1)*$nPerPage)->get();
         return $query->result_array();
     }  
 
@@ -40,5 +39,13 @@ class Sms_model extends CI_Model {
         $query = $this->db->select('count(ID) as cnt')->get('sms_outbox');
         $res = $query->row_array();
         return (int)$res['cnt'];
+    }
+
+    public function send_sms(){
+      $data = array(
+        'Recipient' => $this->input->post('phone'),
+        'Content' => $this->input->post('Content')
+      );
+      $this->db->insert('sms_outbox', $data);
     }            
 }

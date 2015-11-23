@@ -1,9 +1,10 @@
 	    	<article>
 	    		<h2>Системен лог</h2>
 	    		<div class="logs">
-	    			<div class="item"><span>2014/04/05 14:18:42</span><a>Обръщение от IP 192.168.100.2</a></div>
-		    		<div class="item"><span>2014/04/05 14:18:42</span><a>Понижен обхват на системата</a></div>
-		    		<div class="item"><span>2014/04/05 14:18:42</span><a>Системата е стартирана</a></div>
+					<?php foreach ($logs as $item): ?>
+						<div class="item"><span><?php echo date("H:i d.m.Y", strtotime($item['Date'])); ?></span><a><?php echo $item['Message'] ?></a></div>
+					<?php endforeach; ?>	    		
 	    		</div>
+	    		<?php echo $paging; ?>  
 	    		<div class="clear"></div>
 	    	</article>
