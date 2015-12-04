@@ -1,3 +1,4 @@
+.list { margin-bottom: 20px; }
 .list .item { float: left; width: 100%; border-bottom: 1px solid #333; padding: 5px 0px;}
 .list .item div { float: left; margin-right: 1%; font-size: 14px;}
 .list .item .number { font-weight: bold;  width: 14%; }
@@ -17,7 +18,7 @@
 .logs .item span { width: 20%; display: block; font-weight: normal;  float: left;}
 .logs .item a { width: 80%; display: block; float: left;}
 
-.paging { width: 100%; text-align: center; margin-top: 20px; display: inline-block; }
+.paging { width: 100%; text-align: center; margin: 10px auto 30px auto; display: inline-block; }
 .paging a { margin: 5px; font-weight: normal; color: #000; }
 .paging span { margin: 5px; font-weight: normal; color: #337ab7 }
 

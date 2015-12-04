@@ -12,6 +12,7 @@
               <div class="clear"></div>
             </div>
           <?php endforeach; ?>  
+          <div class="clear"></div>
         </div>    
         <?php echo $paging; ?>                
         <div class="clear"></div>

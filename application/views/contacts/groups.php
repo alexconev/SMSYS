@@ -11,7 +11,8 @@
 					</div>
 					<div class="clear"></div>
 				</div>
-				<?php endforeach; ?>		      
+				<?php endforeach; ?>	
+				<div class="clear"></div>	      
 		      </div>            
 		      <?php echo $paging; ?>
 		      <div class="clear"></div>

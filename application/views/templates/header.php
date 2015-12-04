@@ -10,7 +10,7 @@
 
 	    <title><?php echo $Title;?> :: SMSYS</title>		
 
-	    <!-- <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'> -->
+	    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=cyrillic-ext,latin' rel='stylesheet' type='text/css'>
 	    <link href="<?php echo base_url(); ?>static/css/normalize.css" rel="stylesheet">
 	    <link href="<?php echo base_url(); ?>static/css/style.css" rel="stylesheet">
 	    <?php
