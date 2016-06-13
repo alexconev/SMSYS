@@ -1162,7 +1162,7 @@ abstract class CI_DB_driver {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Platform-dependant string escape
+	 * Platform-dependent string escape
 	 *
 	 * @param	string
 	 * @return	string
